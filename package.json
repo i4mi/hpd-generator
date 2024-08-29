@@ -1,0 +1,30 @@
+{
+  "name": "hpd-neu",
+  "version": "2.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "node  server.js",
+    "test": ""
+  },
+  "dependencies": {
+    "@zip.js/zip.js": "^2.7.47",
+    "faker": "^5.5.3",
+    "luxon": "^1.26.0",
+    "mocker-data-generator": "^3.0.0",
+    "tslib": "^2.6.3",
+    "util": "^0.12.3",
+    "vis-data": "^7.1.9",
+    "vis-network": "^9.1.9",
+    "vue": "^3.4.29"
+  },
+  "devDependencies": {
+    "@types/node": "^22.1.0",
+    "@vitejs/plugin-vue": "^5.0.5",
+    "vite": "^5.3.1"
+  }
+}
