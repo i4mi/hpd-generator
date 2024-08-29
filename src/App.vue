@@ -570,6 +570,7 @@ export default {
 
 body {
     place-items: unset !important;
+    background-color: white;
 }
 
 .item-align-top {
