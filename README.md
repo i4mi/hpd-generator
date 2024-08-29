@@ -1,5 +1,5 @@
 # HPD Testdaten-Generator
-Der HPD Testdaten-Generator ist ein Tool, das wir im Auftrag von eHealth Suisse (Kontakt: Maurice Zysset) erstellt und erweitert haben. Die laufende Version ist unter https://hpdgenerator.public.medinflab.ti.bfh.ch/ verfügbar.
+Der HPD Testdaten-Generator ist ein Tool, das wir im Auftrag von eHealth Suisse erstellt und erweitert haben. Die laufende Version ist unter https://hpdgenerator.public.medinflab.ti.bfh.ch/ verfügbar.
 
 ## Deployment
 - Die Gitlab-Pipeline erstellt automatisch einen Docker-Container, wenn ein Commit auf Gitlab gepusht wird. Die Konfiguration des Docker Files ist im [Dockerfile](./Dockerfile) vorzunehmen.
