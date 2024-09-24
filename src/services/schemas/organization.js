@@ -78,27 +78,27 @@ export const organization = {
         function: () => {
             return Math.random() > 0.5
                 ? tools.generateDateTime(1.6)
-                : undefined
+                : undefined;
         }
     },
     HcRegisteredName: {
         function: function () {
-            return this.object.virtualName
+            return this.object.virtualName;
         }
     },
     hpdProviderPracticeAddress: {
         // as LDAP address https://ldapwiki.com/wiki/Wiki.jsp?page=Postal%20Address_LDAPSyntax
         function: function () {
             faker.locale = "de_CH";
-            let address = tools.generateAddress()
+            let address = tools.generateAddress();
             return "status=primary$addr="
-                + address.streetName + ' '
-                + address.streetNumber + '$'
-                + address.zipCode + ' '
-                + address.city + ' '
-                + address.stateAbbr
-                + "$city=" + address.city
-                 + "$country=CH";
+                + this.object.customName
+                + '$streetName=' + address.streetName
+                + '$$streetNumber=' + address.streetNumber
+                + '$postalCode=' + address.zipCode 
+                + '$city=' + address.city 
+                + '$state=' + address.stateAbbr
+                + "$country=CH";
         },
     },
     uid: {

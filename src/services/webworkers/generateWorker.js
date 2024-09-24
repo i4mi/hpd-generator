@@ -52,7 +52,7 @@ onmessage = (e) => {
         // case 'assistant': 
         //     datagen.add("professionals", assistant, options.amount ||3);
         //     return datagen.build();
-        case 'universityhospital': // OK
+        case 'universityhospital':
             datagen.add('organizations', universityhospital, 1, options.name, options.uid);
             mainDepartements = options.departments || [...TYPES.department].sort(() => 0.5 - Math.random()).slice(0,4); // get 4 random elements
             for (let dep of mainDepartements) {
@@ -73,7 +73,7 @@ onmessage = (e) => {
             return datagen.build().then((data) => {
                 answerMessage(filterPseudoOrganizations(data), options);
             });
-        case 'doctoroffice': // OK
+        case 'doctoroffice':
             datagen.add('organizations', doctorsoffice, 1, options.name, options.uid);
             mainDepartements = options.departments || [...TYPES.group].slice(0,2);
             mainDepartements.forEach((dep) => {
@@ -90,7 +90,7 @@ onmessage = (e) => {
             return datagen.build().then((data) => {
                 answerMessage(filterPseudoOrganizations(data), options);
             });
-        case 'radiology': // OK
+        case 'radiology': 
             datagen.add('organizations', radiology, 1, options.name, options.uid);
             mainDepartements = options.departments || ['Ärzte',' Radiologieassistenzen', 'Praxisassistenz'];
             mainDepartements.forEach((dep) => {
@@ -104,7 +104,7 @@ onmessage = (e) => {
             return datagen.build().then((data) => {
                 answerMessage(filterPseudoOrganizations(data), options);
             });
-        case 'ambulant': // ok
+        case 'ambulant': 
             datagen.add('organizations', ambulant, 1, options.name, options.uid);
             mainDepartements = options.departments || ['Ärzte',' Operateure', 'Praxisassistenzen', 'Technische Operationsassistenzen'];
             mainDepartements.forEach((dep) => {
@@ -118,7 +118,7 @@ onmessage = (e) => {
             return datagen.build().then((data) => {
                 answerMessage(filterPseudoOrganizations(data), options);
             });
-        case 'hospital': // ok
+        case 'hospital': 
             datagen.add('organizations', hospital, 1, options.name, options.uid);
             mainDepartements = options.departments || [...TYPES.group].slice(0,2);
             mainDepartements.forEach((dep) => {
@@ -135,7 +135,7 @@ onmessage = (e) => {
             return datagen.build().then((data) => {
                 answerMessage(filterPseudoOrganizations(data), options);
             });
-        case 'reha': // ok
+        case 'reha':    
             datagen.add('organizations', reha, 1, options.name, options.uid);
             mainDepartements = options.departments || [...TYPES.group].slice(0,3);
             mainDepartements.forEach((dep) => {
@@ -152,7 +152,7 @@ onmessage = (e) => {
             return datagen.build().then((data) => {
                 answerMessage(filterPseudoOrganizations(data), options);
             });
-        case 'bighospital':  // ok
+        case 'bighospital':  
             datagen.add('organizations', hospital, 1, options.name, options.uid);
             mainDepartements = options.departments || ['Arztpraxis', 'Medizin', 'Chirurgie'];
             for (let dep of mainDepartements) {
@@ -173,17 +173,24 @@ onmessage = (e) => {
             return datagen.build().then((data) => {
                 answerMessage(filterPseudoOrganizations(data), options);
             });
-        case 'department': 
-            datagen.addDepartement(options.name || 'Abteilung');
-            datagen.addProfessionalsToOrganisation(professionals, options.professionalAmount || 3);
-            return datagen.build().then(answerMessage);
+        case 'department':
+            const dep = options.name || 'Abteilung'
+            datagen.addDepartement(dep);
+            datagen.addDepartement(dep + ' Pflege');
+            datagen.addProfessionalsToOrganisation(caregiver, 3);
+            datagen.addDepartement(dep + ' Ärzte');
+            datagen.addProfessionalsToOrganisation(professionals, 3);
+            datagen.addRelationship(
+                "HcRegisteredName", new RegExp("^" + dep + "$"),
+                "HcRegisteredName", new RegExp("^" + dep + ' Ärzte' + "$|^" + dep + ' Pflege' + "$")
+            );
+            return datagen.build().then((data) => answerMessage(data, options));
         case 'group': 
             datagen.addDepartement(options.name || 'Personal');
             datagen.addProfessionalsToOrganisation(professionals, options.professionalsAmount || 3);
-            return datagen.build().then(answerMessage);
+            return datagen.build().then((data) => answerMessage(data, options));
         case 'basics':
         default: 
-            console.log('we are in defaults', options);
             return mocker()
                 .schema('organizations', organizations, 1)
                 .schema('professionals', professionals, 1)

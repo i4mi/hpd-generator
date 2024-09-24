@@ -50,6 +50,7 @@ onmessage = (e) => {
         returnObject.a++;
     });
 
+    const alreadyAdded = [];
     data.relationships.forEach((relationship) => {
         let owner = returnObject.generatedData.organizations.find((org) => org.DN === relationship.owner);
         if (!owner) {
@@ -57,15 +58,18 @@ onmessage = (e) => {
         }
         const members = relationship.member.split(';');
         owner && members.forEach((member) => {
-            returnObject.memberToAdd.push({o: owner, m: member});
-            const from = returnObject.lookupTable[member];
-            const to = returnObject.lookupTable[relationship.owner];
-            if (to && from) {
-                returnObject.networkToAdd.push({
-                    type: 'edge',
-                    data: {to: to, from: from, length: 200}
-                });
+            if (!alreadyAdded.includes(member)) {
+                returnObject.memberToAdd.push({o: owner, m: member});
+                const from = returnObject.lookupTable[member];
+                const to = returnObject.lookupTable[relationship.owner];
+                if (to && from) {
+                    returnObject.networkToAdd.push({
+                        type: 'edge',
+                        data: {to: to, from: from, length: 200}
+                    });
+                }
             }
+            alreadyAdded.push(member);
         });
     });
 

@@ -104,6 +104,7 @@ export function generateData(options) {
                         amount: options.amount,
                         type: options.type,
                         national: options.national,
+                        name: options.name,
                         departments: [...options.departments].splice(i, CHUNK_SIZE),
                         uid: e.data.organizations[0].uid, // make sure that all sub-orgs are in the same top-org
                         messageID: ++lastSentMessageID
@@ -123,6 +124,7 @@ export function generateData(options) {
             amount: options.amount,
             type: options.type,
             national: options.national,
+            name: options.name,
             departments: options.departments
                 ? [...options.departments].splice(0, CHUNK_SIZE)
                 : undefined,

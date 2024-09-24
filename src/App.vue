@@ -58,8 +58,8 @@ function mapDataToExistingCommunity(data, parentCommunity, parentCounter) {
             rel.DN = uid + rel.DN.substring(rel.DN.indexOf(','));
             rel.cn = uid;
             lookup.forEach((pair) => {
-                rel.member = rel.member.replace(pair.old, pair.new);
-                rel.owner = rel.owner.replace(pair.old, pair.new);
+                rel.member = rel.member.replace(pair.old, pair.new.split('uid=').at(-1));
+                rel.owner = rel.owner.replace(pair.old, pair.new.split('uid=').at(-1));
             });
         });
     }
