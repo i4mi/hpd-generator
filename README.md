@@ -1,5 +1,5 @@
 # HPD Testdaten-Generator
-Der HPD Testdaten-Generator ist ein Tool, das wir im Auftrag von eHealth Suisse (Kontakt: Maurice Zysset) erstellt und erweitert haben. Die laufende Version ist unter in einem Github Repo auf Pagesde ployed und unter https://i4mi.github.io/hpd-generator/ verfügbar.
+Der HPD Testdaten-Generator ist ein Tool, das wir im Auftrag von eHealth Suisse (Kontakt: Maurice Zysset) erstellt und erweitert haben. Die laufende Version ist unter in einem Github Repo auf Pages deployed und unter https://i4mi.github.io/hpd-generator/ verfügbar.
 
 ## Deployment 
 Der HPD-Testgenerator wird über Github Pages gehostet. Dafür gibt es ein privates [privates Github Repo](https://github.com/i4mi/hpd-generator). Die Pipeline ist so konfiguriert, dass beim Commit auf den `main`-Branch ein Build erstellt und unter https://i4mi.github.io/hpd-generator/ bereitgestellt wird.
